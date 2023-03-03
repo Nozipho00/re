@@ -1,0 +1,42 @@
+﻿@model OM_dummy1.Models.Agent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Agent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AgentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AgentSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgentSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.DepartmentName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AgentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

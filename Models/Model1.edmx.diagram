@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d6877b58bd64f328330e998f8a0bbed" Name="Diagram1">
+        <EntityTypeShape EntityType="OMdummyModel.Agent" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OMdummyModel.Bank" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OMdummyModel.Customer" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OMdummyModel.Department" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OMdummyModel.Policy" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="OMdummyModel.Query" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="OMdummyModel.FK__Agent__Departmen__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="OMdummyModel.FK__Query__AgentID__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="OMdummyModel.FK__Bank__CustomerID__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="OMdummyModel.FK__Bank__PolicyID__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="OMdummyModel.FK__Customer__Policy__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="OMdummyModel.FK__Query__CustomerI__4AB81AF0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

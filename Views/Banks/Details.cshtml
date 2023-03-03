@@ -1,0 +1,50 @@
+﻿@model OM_dummy1.Models.Bank
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bank</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BankName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Policy.PolicyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Policy.PolicyName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BranchCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

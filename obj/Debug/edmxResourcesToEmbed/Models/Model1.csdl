@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OMdummyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="AgentID" Type="Int32" Nullable="false" />
+    <Property Name="AgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AgentSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Agent__Departmen__47DBAE45" FromRole="Agent" ToRole="Department" />
+    <NavigationProperty Name="Queries" Relationship="Self.FK__Query__AgentID__4BAC3F29" FromRole="Agent" ToRole="Query" />
+  </EntityType>
+  <EntityType Name="Bank">
+    <Key>
+      <PropertyRef Name="BranchCode" />
+    </Key>
+    <Property Name="BranchCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BankType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="PolicyID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Bank__CustomerID__3E52440B" FromRole="Bank" ToRole="Customer" />
+    <NavigationProperty Name="Policy" Relationship="Self.FK__Bank__PolicyID__3F466844" FromRole="Bank" ToRole="Policy" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAge" Type="Int32" Nullable="false" />
+    <Property Name="PolicyID" Type="Int32" />
+    <NavigationProperty Name="Banks" Relationship="Self.FK__Bank__CustomerID__3E52440B" FromRole="Customer" ToRole="Bank" />
+    <NavigationProperty Name="Policy" Relationship="Self.FK__Customer__Policy__3B75D760" FromRole="Customer" ToRole="Policy" />
+    <NavigationProperty Name="Queries" Relationship="Self.FK__Query__CustomerI__4AB81AF0" FromRole="Customer" ToRole="Query" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Agents" Relationship="Self.FK__Agent__Departmen__47DBAE45" FromRole="Department" ToRole="Agent" />
+  </EntityType>
+  <EntityType Name="Policy">
+    <Key>
+      <PropertyRef Name="PolicyID" />
+    </Key>
+    <Property Name="PolicyID" Type="Int32" Nullable="false" />
+    <Property Name="PolicyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PolicyDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Banks" Relationship="Self.FK__Bank__PolicyID__3F466844" FromRole="Policy" ToRole="Bank" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK__Customer__Policy__3B75D760" FromRole="Policy" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Query">
+    <Key>
+      <PropertyRef Name="QueryID" />
+    </Key>
+    <Property Name="QueryID" Type="Int32" Nullable="false" />
+    <Property Name="QueryDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="QueryType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="AgentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK__Query__AgentID__4BAC3F29" FromRole="Query" ToRole="Agent" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Query__CustomerI__4AB81AF0" FromRole="Query" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK__Agent__Departmen__47DBAE45">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="Agent">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Query__AgentID__4BAC3F29">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+    <End Role="Query" Type="Self.Query" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="Query">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bank__CustomerID__3E52440B">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Bank" Type="Self.Bank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Bank">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bank__PolicyID__3F466844">
+    <End Role="Policy" Type="Self.Policy" Multiplicity="0..1" />
+    <End Role="Bank" Type="Self.Bank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policy">
+        <PropertyRef Name="PolicyID" />
+      </Principal>
+      <Dependent Role="Bank">
+        <PropertyRef Name="PolicyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Customer__Policy__3B75D760">
+    <End Role="Policy" Type="Self.Policy" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policy">
+        <PropertyRef Name="PolicyID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="PolicyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Query__CustomerI__4AB81AF0">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Query" Type="Self.Query" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Query">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OMdummyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="Banks" EntityType="Self.Bank" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Policies" EntityType="Self.Policy" />
+    <EntitySet Name="Queries" EntityType="Self.Query" />
+    <AssociationSet Name="FK__Agent__Departmen__47DBAE45" Association="Self.FK__Agent__Departmen__47DBAE45">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Agent" EntitySet="Agents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Query__AgentID__4BAC3F29" Association="Self.FK__Query__AgentID__4BAC3F29">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="Query" EntitySet="Queries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bank__CustomerID__3E52440B" Association="Self.FK__Bank__CustomerID__3E52440B">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Bank" EntitySet="Banks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bank__PolicyID__3F466844" Association="Self.FK__Bank__PolicyID__3F466844">
+      <End Role="Policy" EntitySet="Policies" />
+      <End Role="Bank" EntitySet="Banks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Customer__Policy__3B75D760" Association="Self.FK__Customer__Policy__3B75D760">
+      <End Role="Policy" EntitySet="Policies" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Query__CustomerI__4AB81AF0" Association="Self.FK__Query__CustomerI__4AB81AF0">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Query" EntitySet="Queries" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
